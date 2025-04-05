@@ -1,6 +1,6 @@
-import Header from "@/components/layout/Header";
 import "./globals.css";
 import localFont from "next/font/local";
+import Layout from "@/components/layout/Layout";
 
 const yekan = localFont({
   src: [
@@ -41,8 +41,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fa" dir="rtl">
       <body className={yekan.className}>
-        <Header />
-        {children}
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
