@@ -1,14 +1,34 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import localFont from "next/font/local";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const yekan = localFont({
+  src: [
+    {
+      path: "../../public/fonts/YekanBakh-Light.woff2",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/YekanBakh-Fat.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/YekanBakh-Bold.woff2",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/YekanBakh-Regular.woff2",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/YekanBakh-Heavy.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
 });
 
 export const metadata = {
@@ -18,10 +38,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+    <html lang="fa" dir="rtl">
+      <body className={yekan.className}>{children}</body>
     </html>
   );
 }
