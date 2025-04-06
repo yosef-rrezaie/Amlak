@@ -1,6 +1,7 @@
-
 export default function Home() {
   return (
-   <main>سلام</main>
+    <>
+      <main>سلام</main>
+    </>
   );
 }
