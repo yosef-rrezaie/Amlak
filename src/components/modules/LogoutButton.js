@@ -1,3 +1,4 @@
+"use client"
 import { signOut } from "next-auth/react";
 import styles from "./LogoutButton.module.css";
 import { FiLogOut } from "react-icons/fi";
