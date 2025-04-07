@@ -16,7 +16,7 @@ const authOptions = {
           throw new Error("مشکلی در سرور رخ داده است");
         }
 
-        if (!email || !email) throw new Error("لطفا اطلاعات معتبر وارد کنید");
+        if (!email || !password) throw new Error("لطفا اطلاعات معتبر وارد کنید");
 
         const user = await User.findOne({ email });
         if (!user) throw new Error("لطفا ابتدا حساب کاربری ایجاد کنید");
