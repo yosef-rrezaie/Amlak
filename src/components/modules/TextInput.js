@@ -1,3 +1,4 @@
+import { e2p } from "@/utils/replaceNumber";
 import styles from "./TextInput.module.css";
 export default function TextInput({
   title,
@@ -8,7 +9,7 @@ export default function TextInput({
 }) {
   const changeHandler = (e) => {
     const { name, value } = e.target;
-    setProfileData({ ...profileData, [name]: value });
+    setProfileData({ ...profileData, [name]: e2p(value) });
   };
   return (
     <div className={styles.container}>
