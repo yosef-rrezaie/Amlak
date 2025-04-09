@@ -51,3 +51,4 @@ const profileSchema = new Schema(
 );
 
 const Profile = models.Profile || model("Profile" , profileSchema)
+export {Profile}
