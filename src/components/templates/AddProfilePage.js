@@ -4,6 +4,7 @@ import styles from "./AddProfilePage.module.css";
 import TextInput from "../modules/TextInput";
 import RadioList from "./RadioList";
 import TextList from "../modules/TextList";
+import CustomeDate from "../modules/CustomeDate";
 export default function AddProfilePage() {
   const [profileData, setProfileData] = useState({
     title: "",
@@ -67,6 +68,7 @@ export default function AddProfilePage() {
         setProfileData={setProfileData}
         type="rules"
       />
+      <CustomeDate profileData={profileData} setProfileData={setProfileData} />
       <button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
       </button>
