@@ -68,7 +68,7 @@ export default function AddProfilePage() {
         setProfileData={setProfileData}
         type="rules"
       />
-      <CustomeDate profileData={profileData} setProfileData={setProfileData} />
+      <CustomeDate profileData={profileData} setProfileData={setProfileData}/>
       <button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
       </button>
