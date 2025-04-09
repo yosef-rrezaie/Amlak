@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from "./AddProfilePage.module.css";
 import TextInput from "../modules/TextInput";
 import RadioList from "./RadioList";
+import TextList from "../modules/TextList";
 export default function AddProfilePage() {
   const [profileData, setProfileData] = useState({
     title: "",
@@ -53,7 +54,19 @@ export default function AddProfilePage() {
         profileData={profileData}
         setProfileData={setProfileData}
       />
-      <RadioList profileData={profileData} setprofileData={setProfileData}/>
+      <RadioList profileData={profileData} setprofileData={setProfileData} />
+      <TextList
+        title="امکانات رفاهی"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        type="amenities"
+      />
+      <TextList
+        title="قوانین"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        type="rules"
+      />
       <button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
       </button>
