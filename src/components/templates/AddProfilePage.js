@@ -19,7 +19,6 @@ export default function AddProfilePage() {
     amenities: [],
   });
   const submitHandler = async () => {
-    console.log(profileData)
     const res = await fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(profileData),
