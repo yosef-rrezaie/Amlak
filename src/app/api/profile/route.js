@@ -1,6 +1,7 @@
 import { Profile } from "@/models/Profile";
 import { User } from "@/models/User";
 import connectDB from "@/utils/connectDB";
+import { e2p, p2e } from "@/utils/replaceNumber";
 import { Types } from "mongoose";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
@@ -14,27 +15,25 @@ export async function POST(req) {
       description,
       location,
       phone,
-      realState,
       price,
       constructionDate,
       category,
       rules,
       amenities,
     } = body;
-
     const session = await getServerSession(req);
     if (!session)
       return NextResponse.json(
-        { erorr: "لطفا وارد حساب کاربری خود شوید" },
+        { error: "لطفا وارد حساب کاربری خود شوید" },
         { status: 401 }
       );
 
+    const user = await User.findOne({ email: session.user.email });
     if (
       !title ||
       !location ||
       !description ||
       !phone ||
-      !realState ||
       !price ||
       !constructionDate ||
       !category
@@ -46,18 +45,18 @@ export async function POST(req) {
     }
 
     const newProfile = await Profile.create({
-      title,
-      description,
-      location,
-      phone,
-      realState,
-      price: +price,
-      constructionDate,
+      title : p2e(title) ,
+      description : p2e(description),
+      location : p2e(location),
+      phone : p2e(phone),
+      price: p2e(price).toString(),
+      constructionDate ,
       category,
       rules,
       amenities,
-      userId: new Types.ObjectId(User._id),
+      userId: new Types.ObjectId(user._id),
     });
+    console.log(newProfile);
     return NextResponse.json(
       { message: "آگهی جدید اضافه شد" },
       { status: 201 }
@@ -65,7 +64,7 @@ export async function POST(req) {
   } catch (err) {
     console.log(err);
     return NextResponse.json(
-      { erorr: "مشکلی در سرور رخ داده است" },
+      { error: "مشکلی در سرور رخ داده است" },
       { status: 500 }
     );
   }

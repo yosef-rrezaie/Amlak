@@ -18,10 +18,6 @@ const profileSchema = new Schema(
       type: String,
       required: true,
     },
-    realState: {
-      type: String,
-      required: true,
-    },
     price: {
       type: Number,
       required: true,

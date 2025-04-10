@@ -5,6 +5,7 @@ import TextInput from "../modules/TextInput";
 import RadioList from "./RadioList";
 import TextList from "../modules/TextList";
 import CustomeDate from "../modules/CustomeDate";
+import toast, { Toaster } from "react-hot-toast";
 export default function AddProfilePage() {
   const [profileData, setProfileData] = useState({
     title: "",
@@ -12,14 +13,25 @@ export default function AddProfilePage() {
     location: "",
     phone: "",
     price: "",
-    realState: "",
     constructionDate: new Date(),
     category: "",
     rules: [],
     amenities: [],
   });
-  const submitHandler = () => {
-    console.log(profileData);
+  const submitHandler = async () => {
+    console.log(profileData)
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      body: JSON.stringify(profileData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json()
+    console.log(data.error)
+    if(data.error) {
+      toast.error(data.error)
+    }else {
+      toast.success(data.message)
+    }
   };
   return (
     <div className={styles.container}>
@@ -68,10 +80,11 @@ export default function AddProfilePage() {
         setProfileData={setProfileData}
         type="rules"
       />
-      <CustomeDate profileData={profileData} setProfileData={setProfileData}/>
+      <CustomeDate profileData={profileData} setProfileData={setProfileData} />
       <button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
       </button>
+      <Toaster/>
     </div>
   );
 }
