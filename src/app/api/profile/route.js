@@ -112,7 +112,7 @@ export async function PATCH(req) {
       );
     }
 
-    const profile = await Profile({ _id });
+    const profile = await Profile.findById(_id);
     profile.title = title;
     profile.description = description;
     profile.location = location;
