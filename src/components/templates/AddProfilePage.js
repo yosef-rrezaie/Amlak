@@ -1,12 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AddProfilePage.module.css";
 import TextInput from "../modules/TextInput";
 import RadioList from "./RadioList";
 import TextList from "../modules/TextList";
 import CustomeDate from "../modules/CustomeDate";
 import toast, { Toaster } from "react-hot-toast";
-export default function AddProfilePage() {
+export default function AddProfilePage({data}) {
+  console.log(data)
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
@@ -18,6 +19,10 @@ export default function AddProfilePage() {
     rules: [],
     amenities: [],
   });
+
+  useEffect(()=> {
+    if(data) setProfileData(data)
+  } , [])
   const submitHandler = async () => {
     const res = await fetch("/api/profile", {
       method: "POST",
@@ -32,9 +37,13 @@ export default function AddProfilePage() {
       toast.success(data.message)
     }
   };
+
+  const editHandler = ()=> {
+    
+  }
   return (
     <div className={styles.container}>
-      <h3>ثبت آگهی</h3>
+      <h3>{data ? "ویرایش آکهی" : "ثبت آگهی"}</h3>
       <TextInput
         title="عنوان آگهی"
         name="title"
@@ -80,9 +89,11 @@ export default function AddProfilePage() {
         type="rules"
       />
       <CustomeDate profileData={profileData} setProfileData={setProfileData} />
-      <button className={styles.submit} onClick={submitHandler}>
+      {data ? (<button className={styles.submit} onClick={editHandler}>
+        ویرایش آگهی
+      </button>) : (<button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
-      </button>
+      </button>)}
       <Toaster/>
     </div>
   );

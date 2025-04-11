@@ -4,10 +4,12 @@ import {AiOutlineDelete} from "react-icons/ai"
 import Card from "./Card";
 import styles from "./DashboardCard.module.css"
 import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 export default function DashboardCard({ data }) {
+  const router = useRouter()
 
   const editHandler = ()=> {
-    
+    router.push(`/dashboard/my-profile/${data._id}`)
   }
   const deleteHandler = ()=> {
 
