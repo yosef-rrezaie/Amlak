@@ -17,7 +17,7 @@ export default async function DashboardSidebar({ children, role }) {
         <Link href="/dashboard/">حساب کاربری</Link>
         <Link href="/dashboard/my-profile">آگهی های من</Link>
         <Link href="/dashboard/add">ثبت آگهی</Link>
-        {role==="ADMIN" ? <Link href="/">در انتظار تایید</Link> : null }
+        {role==="ADMIN" ? <Link href="/admin">در انتظار تایید</Link> : null }
         <LogoutButton />
       </div>
       <div className={styles.main}>{children}</div>
