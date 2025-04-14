@@ -139,7 +139,7 @@ export async function PATCH(req) {
 export async function GET(req) {
   try {
     await connectDB();
-    const profiles = await Profile.find().select("-userId")
+    const profiles = await Profile.find({published : true}).select("-userId")
     console.log(profiles)
     return NextResponse.json({data : profiles} , {status : 200})
   } catch (error) {
