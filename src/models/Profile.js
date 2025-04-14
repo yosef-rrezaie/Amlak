@@ -42,9 +42,13 @@ const profileSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    published: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
 
-const Profile = models.Profile || model("Profile" , profileSchema)
-export {Profile}
+const Profile = models.Profile || model("Profile", profileSchema);
+export { Profile };
