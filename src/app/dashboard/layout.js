@@ -5,6 +5,10 @@ import { getServerSession } from "next-auth";
 import connectDB from "@/utils/connectDB";
 import { User } from "@/models/User";
 
+export const metadata = {
+  title: "پنل کاربری املاک",
+};
+
 export default async function DashboardLayout({ children }) {
   const session = await getServerSession(authOptions);
   if (!session) redirect("/");
